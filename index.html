@@ -19,6 +19,21 @@
             @apply absolute bottom-0 left-0 w-16 h-1 bg-blue-500;
             content: '';
         }
+        .card {
+            @apply bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer;
+        }
+        .section-card {
+            @apply card relative overflow-hidden;
+        }
+        .section-card img {
+            @apply w-full h-48 object-cover;
+        }
+        .section-card .overlay {
+            @apply absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-xl font-semibold opacity-0 transition-opacity duration-300;
+        }
+        .section-card:hover .overlay {
+            @apply opacity-100;
+        }
         .timeline-item {
             @apply relative pl-10 mb-8;
         }
@@ -30,14 +45,11 @@
             @apply absolute left-0 top-2 w-4 h-4 bg-blue-500 rounded-full;
             content: '';
         }
-        .card {
-            @apply bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300;
-        }
-        .publication-card {
-            @apply card mb-4;
-        }
         .skill-tag {
             @apply inline-block bg-blue-100 text-blue-700 text-sm px-3 py-1 rounded-full mr-2 mb-2;
+        }
+        .hidden-section {
+            display: none;
         }
     </style>
 </head>
@@ -52,257 +64,301 @@
                 <a href="https://www.linkedin.com/in/alireza-rashtbari" target="_blank" class="hover:text-blue-200 transition">LinkedIn</a>
                 <a href="https://www.researchgate.net/profile/Alireza-Rashtbari" target="_blank" class="hover:text-blue-200 transition">ResearchGate</a>
             </div>
-            <div class="mt-4 text-sm">
-                <p>Aras Street, Apt. 6, Kharvana, Tabriz, Iran</p>
-                <p>Phone: +98 938 198 2848 | +98 41 4452 2102</p>
-            </div>
         </div>
     </header>
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-12">
-        <!-- Research Interests -->
-        <section class="mb-12" data-aos="fade-up">
-            <h2 class="section-title">Research Interests</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="card">
-                    <p>Theoretical models of anxiety and mood disorders</p>
+        <!-- Home Page -->
+        <section id="home" class="section" data-aos="fade-up">
+            <h2 class="section-title text-center">Explore My CV</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="section-card" onclick="showSection('research-interests')">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Research Interests">
+                    <div class="overlay">Research Interests</div>
+                    <p class="text-center p-4 font-semibold">Research Interests</p>
                 </div>
-                <div class="card">
-                    <p>Psychophysiological and neurocognitive mechanisms of anxiety and mood disorders</p>
+                <div class="section-card" onclick="showSection('academic-qualifications')">
+                    <img src="https://images.unsplash.com/photo-1580582932707-520aed4d90ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Academic Qualifications">
+                    <div class="overlay">Academic Qualifications</div>
+                    <p class="text-center p-4 font-semibold">Academic Qualifications</p>
                 </div>
-                <div class="card">
-                    <p>Exploring multimodal psychophysiological data using machine learning algorithms</p>
+                <div class="section-card" onclick="showSection('honors')">
+                    <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Honors">
+                    <div class="overlay">Honors</div>
+                    <p class="text-center p-4 font-semibold">Honors</p>
                 </div>
-                <div class="card">
-                    <p>Transdiagnostic examination of the Contrast Avoidance Model (CAM)</p>
+                <div class="section-card" onclick="showSection('publications')">
+                    <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Publications">
+                    <div class="overlay">Publications</div>
+                    <p class="text-center p-4 font-semibold">Publications</p>
+                </div>
+                <div class="section-card" onclick="showSection('book-translation')">
+                    <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Book Translation">
+                    <div class="overlay">Book Translation</div>
+                    <p class="text-center p-4 font-semibold">Book Translation</p>
+                </div>
+                <div class="section-card" onclick="showSection('conferences')">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Conferences">
+                    <div class="overlay">Conferences & Presentations</div>
+                    <p class="text-center p-4 font-semibold">Conferences & Presentations</p>
+                </div>
+                <div class="section-card" onclick="showSection('research-projects')">
+                    <img src="https://images.unsplash.com/photo-1552664688-cf412ec27db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Research Projects">
+                    <div class="overlay">Research Projects</div>
+                    <p class="text-center p-4 font-semibold">Research Projects</p>
+                </div>
+                <div class="section-card" onclick="showSection('skills')">
+                    <img src="https://images.unsplash.com/photo-1516321310768-61ca8c8970e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Skills">
+                    <div class="overlay">Skills</div>
+                    <p class="text-center p-4 font-semibold">Skills</p>
+                </div>
+                <div class="section-card" onclick="showSection('coursera')">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Coursera Certificates">
+                    <div class="overlay">Coursera Certificates</div>
+                    <p class="text-center p-4 font-semibold">Coursera Certificates</p>
+                </div>
+                <div class="section-card" onclick="showSection('experience')">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2b6a28?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Experience">
+                    <div class="overlay">Experience</div>
+                    <p class="text-center p-4 font-semibold">Experience</p>
+                </div>
+                <div class="section-card" onclick="showSection('workshops')">
+                    <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Workshops">
+                    <div class="overlay">Workshops & Webinars</div>
+                    <p class="text-center p-4 font-semibold">Workshops & Webinars</p>
+                </div>
+                <div class="section-card" onclick="showSection('memberships')">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Memberships">
+                    <div class="overlay">Professional Memberships</div>
+                    <p class="text-center p-4 font-semibold">Professional Memberships</p>
+                </div>
+                <div class="section-card" onclick="showSection('interests')">
+                    <img src="https://images.unsplash.com/photo-1506784365847-bbadad4e01be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Interests">
+                    <div class="overlay">Interests</div>
+                    <p class="text-center p-4 font-semibold">Interests</p>
+                </div>
+                <div class="section-card" onclick="showSection('referees')">
+                    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Referees">
+                    <div class="overlay">Referees</div>
+                    <p class="text-center p-4 font-semibold">Referees</p>
                 </div>
             </div>
         </section>
 
+        <!-- Research Interests -->
+        <section id="research-interests" class="section hidden-section" data-aos="fade-up">
+            <h2 class="section-title">Research Interests</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="card p-6"><p>Theoretical models of anxiety and mood disorders</p></div>
+                <div class="card p-6"><p>Psychophysiological and neurocognitive mechanisms</p></div>
+                <div class="card p-6"><p>Multimodal psychophysiological data with ML</p></div>
+                <div class="card p-6"><p>Transdiagnostic Contrast Avoidance Model (CAM)</p></div>
+            </div>
+            <button onclick="showSection('home')" class="mt-6 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Back to Home</button>
+        </section>
+
         <!-- Academic Qualifications -->
-        <section class="mb-12" data-aos="fade-up">
+        <section id="academic-qualifications" class="section hidden-section" data-aos="fade-up">
             <h2 class="section-title">Academic Qualifications</h2>
             <div class="timeline-item">
                 <h3 class="font-semibold text-xl">Master of Science in Clinical Psychology</h3>
-                <p class="text-sm text-gray-500">Zanjan University of Medical Sciences, Iran | 11/2017 – 09/2021</p>
-                <p>Thesis: Investigating Transdiagnostic Validity of the Contrast Avoidance Model in Emotional Disorders</p>
+                <p class="text-sm text-gray-500">Zanjan University of Medical Sciences | 11/2017 – 09/2021</p>
+                <p>Thesis: Transdiagnostic Validity of Contrast Avoidance Model</p>
                 <p>GPA: 3.76</p>
             </div>
             <div class="timeline-item">
                 <h3 class="font-semibold text-xl">Bachelor of Science in Clinical Psychology</h3>
-                <p class="text-sm text-gray-500">Tabriz University, Iran | 09/2013 – 01/2017</p>
-                <p>Thesis: Assessment of Mental Health Status Among Nurses Working in 29 Bahman Hospital in Tabriz city</p>
+                <p class="text-sm text-gray-500">Tabriz University | 09/2013 – 01/2017</p>
+                <p>Thesis: Mental Health Status of Nurses at 29 Bahman Hospital</p>
                 <p>GPA: 3.39</p>
             </div>
+            <button onclick="showSection('home')" class="mt-6 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Back to Home</button>
         </section>
 
         <!-- Honors -->
-        <section class="mb-12" data-aos="fade-up">
+        <section id="honors" class="section hidden-section" data-aos="fade-up">
             <h2 class="section-title">Honors</h2>
             <ul class="list-disc pl-6">
-                <li>Scientific grant of Iran's National Elites Foundation (INEF), 2022 - 2023</li>
-                <li>Ranked third among Clinical Psychology students, Zanjan University of Medical Sciences, 2017-2021</li>
-                <li>Ranked 35th among over 4000 applicants in the national Clinical Psychology M.Sc. entrance exam, 2017</li>
+                <li>Scientific grant, Iran's National Elites Foundation, 2022-2023</li>
+                <li>Ranked 3rd, Clinical Psychology, Zanjan University, 2017-2021</li>
+                <li>Ranked 35th among 4000+ applicants, M.Sc. entrance exam, 2017</li>
             </ul>
+            <button onclick="showSection('home')" class="mt-6 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Back to Home</button>
         </section>
 
         <!-- Publications -->
-        <section class="mb-12" data-aos="fade-up">
+        <section id="publications" class="section hidden-section" data-aos="fade-up">
             <h2 class="section-title">Publications</h2>
             <h3 class="font-semibold text-lg mb-4">Published</h3>
-            <div class="publication-card">
-                <p>Rashtbari, A., et al. (2023). Psychometric Properties of the Iranian Version of Contrast Avoidance Questionnaires. <i>Journal of Personality Assessment</i>. <a href="https://doi.org/10.1080/00223891.2023.2169153" target="_blank" class="text-blue-500 hover:underline">DOI</a></p>
+            <div class="card p-6 mb-4">
+                <p>Rashtbari, A., et al. (2023). Psychometric Properties of Contrast Avoidance Questionnaires. <i>Journal of Personality Assessment</i>. <a href="https://doi.org/10.1080/00223891.2023.2169153" target="_blank" class="text-blue-500 hover:underline">DOI</a></p>
             </div>
-            <div class="publication-card">
-                <p>Soheilipour, A., Rashtbari, A., et al. (2023). Changes in symptoms during the COVID-19 pandemic. <i>Shenakht Journal of Psychology and Psychiatry</i>. <a href="http://shenakht.muk.ac.ir/article-1-1695-en.html" target="_blank" class="text-blue-500 hover:underline">Link</a></p>
+            <div class="card p-6 mb-4">
+                <p>Soheilipour, A., Rashtbari, A., et al. (2023). Symptoms during COVID-19. <i>Shenakht Journal</i>. <a href="http://shenakht.muk.ac.ir/article-1-1695-en.html" target="_blank" class="text-blue-500 hover:underline">Link</a></p>
             </div>
-            <div class="publication-card">
-                <p>Rashtbari, A., et al. (2022). Psychometric properties of the Intolerance of Uncertainty Scale-12. <i>Shenakht Journal of Psychology and Psychiatry</i>. <a href="http://shenakht.muk.ac.ir/article-1-1662-en.html" target="_blank" class="text-blue-500 hover:underline">Link</a></p>
+            <h3 class="font-semibold text-lg mb-4">In Preparation</h3>
+            <div class="card p-6 mb-4">
+                <p>Abolalaei, A., Rashtbari, A. Executive functions deficits in ADHD.</p>
             </div>
-            <div class="publication-card">
-                <p>Rashtbari, A., et al. (2022). Psychometric properties of the Iranian version of the Social Phobia Inventory. <i>Shenakht Journal of Psychology and Psychiatry</i>. <a href="http://shenakht.muk.ac.ir/article-1-1520-en.html" target="_blank" class="text-blue-500 hover:underline">Link</a></p>
-            </div>
-            <div class="publication-card">
-                <p>Rashtbari, A., & Saed, O. (2020). Contrast avoidance model of worry and generalized anxiety disorder. <i>Cogent Psychology</i>. <a href="https://doi.org/10.1080/23311908.2020.1800262" target="_blank" class="text-blue-500 hover:underline">DOI</a></p>
-            </div>
-            <h3 class="font-semibold text-lg mb-4 mt-6">In Preparation</h3>
-            <div class="publication-card">
-                <p>Abolalaei, A., Rashtbari, A. Executive functions deficits in children with ADHD.</p>
-            </div>
-            <div class="publication-card">
-                <p>Rashtbari, A., et al. Psychometric properties of the Persian version of the Scale of Resilience to Suicide Attempts.</p>
-            </div>
+            <button onclick="showSection('home')" class="mt-6 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Back to Home</button>
         </section>
 
         <!-- Book Translation -->
-        <section class="mb-12" data-aos="fade-up">
+        <section id="book-translation" class="section hidden-section" data-aos="fade-up">
             <h2 class="section-title">Book Translation</h2>
-            <div class="card">
+            <div class="card p-6">
                 <p>Handbook of Behavioral Activation</p>
             </div>
+            <button onclick="showSection('home')" class="mt-6 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Back to Home</button>
         </section>
 
-        <!-- Conferences & Presentations -->
-        <section class="mb-12" data-aos="fade-up">
+        <!-- Conferences -->
+        <section id="conferences" class="section hidden-section" data-aos="fade-up">
             <h2 class="section-title">Conferences & Presentations</h2>
-            <div class="card">
-                <p>Malekizadeh, H., Rashtbari, A., Saed, O. (2021, July). The Role of Executive Functions Deficits in Major Depressive Disorder. Poster at The First National Conference on Psychopathological Studies, Tehran, Iran.</p>
+            <div class="card p-6 mb-4">
+                <p>Malekizadeh, H., Rashtbari, A. (2021). Executive Functions in MDD. National Conference, Tehran.</p>
             </div>
-            <div class="card">
-                <p>The First International E-Conference on COVID-19 & Health System, Zanjan University of Medical Sciences, May 2021.</p>
+            <div class="card p-6 mb-4">
+                <p>International E-Conference on COVID-19, Zanjan University, May 2021.</p>
             </div>
-            <div class="card">
-                <p>Newman, M. G., et al. (2018, February). Contrast Avoidance Model in GAD. Oral Presentation at Journal Club, Zanjan University of Medical Sciences.</p>
-            </div>
+            <button onclick="showSection('home')" class="mt-6 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Back to Home</button>
         </section>
 
         <!-- Research Projects -->
-        <section class="mb-12" data-aos="fade-up">
+        <section id="research-projects" class="section hidden-section" data-aos="fade-up">
             <h2 class="section-title">Research Projects</h2>
             <div class="timeline-item">
-                <p><strong>2022:</strong> Psychometric properties of the Scale of Resilience to Suicide Attempts in Army Conscripts, AJA University of Medical Sciences.</p>
+                <p><strong>2022:</strong> Scale of Resilience to Suicide Attempts, AJA University.</p>
             </div>
             <div class="timeline-item">
-                <p><strong>2019:</strong> Evaluation of Professional Ethics at Zanjan University of Medical Sciences.</p>
+                <p><strong>2019:</strong> Professional Ethics, Zanjan University.</p>
             </div>
-            <div class="timeline-item">
-                <p><strong>2018:</strong> Validity and reliability of Contrast Avoidance Questionnaires, Social Determinants of Health Research Center.</p>
-            </div>
+            <button onclick="showSection('home')" class="mt-6 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Back to Home</button>
         </section>
 
         <!-- Skills -->
-        <section class="mb-12" data-aos="fade-up">
+        <section id="skills" class="section hidden-section" data-aos="fade-up">
             <h2 class="section-title">Skills</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="card">
+                <div class="card p-6">
                     <h3 class="font-semibold mb-2">Technical Skills</h3>
-                    <span class="skill-tag">Advanced R Programming</span>
-                    <span class="skill-tag">Machine Learning with R</span>
+                    <span class="skill-tag">R Programming</span>
+                    <span class="skill-tag">Machine Learning</span>
                     <span class="skill-tag">EEGLAB/ERPLAB</span>
-                    <span class="skill-tag">IBM SPSS & AMOS</span>
+                    <span class="skill-tag">SPSS & AMOS</span>
                     <span class="skill-tag">Power BI</span>
                     <span class="skill-tag">Tableau</span>
-                    <span class="skill-tag">Mplus</span>
-                    <span class="skill-tag">NCSS</span>
-                    <span class="skill-tag">EndNote & Mendeley</span>
                 </div>
-                <div class="card">
+                <div class="card p-6">
                     <h3 class="font-semibold mb-2">Language Skills</h3>
-                    <span class="skill-tag">English (Proficient)</span>
-                    <span class="skill-tag">Persian (Native)</span>
-                    <span class="skill-tag">Turkish (Native)</span>
+                    <span class="skill-tag">English</span>
+                    <span class="skill-tag">Persian</span>
+                    <span class="skill-tag">Turkish</span>
                 </div>
-                <div class="card">
+                <div class="card p-6">
                     <h3 class="font-semibold mb-2">Assessment Skills</h3>
                     <span class="skill-tag">MMPI-II</span>
                     <span class="skill-tag">MCMI-III</span>
                     <span class="skill-tag">NEO PI-R</span>
-                    <span class="skill-tag">WISC-IV</span>
-                    <span class="skill-tag">WAIS-III</span>
-                    <span class="skill-tag">WMS-III</span>
                 </div>
             </div>
+            <button onclick="showSection('home')" class="mt-6 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Back to Home</button>
         </section>
 
         <!-- Coursera Certificates -->
-        <section class="mb-12" data-aos="fade-up">
+        <section id="coursera" class="section hidden-section" data-aos="fade-up">
             <h2 class="section-title">Coursera Certificates</h2>
-            <div class="card">
-                <h3 class="font-semibold">Johns Hopkins University: Neuroimaging Specialization</h3>
-                <p>Fundamental Neuroscience, Principles of fMRI 1 & 2, Neurohacking in R</p>
+            <div class="card p-6 mb-4">
+                <div class="flex items-center mb-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/61/Johns_Hopkins_University_Seal.svg/1200px-Johns_Hopkins_University_Seal.svg.png" alt="Johns Hopkins Logo" class="w-12 h-12 mr-2">
+                    <h3 class="font-semibold">Johns Hopkins University</h3>
+                </div>
+                <p>Neuroimaging Specialization: Fundamental Neuroscience, fMRI Principles, Neurohacking in R</p>
             </div>
-            <div class="card">
-                <h3 class="font-semibold">Duke University: Medical Neuroscience (In Progress)</h3>
-                <p>Neuroanatomy, Neural Signaling, Sensory Systems, Motor Control, Complex Brain Functions</p>
+            <div class="card p-6 mb-4">
+                <div class="flex items-center mb-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7e/Duke_University_shield.svg/1200px-Duke_University_shield.svg.png" alt="Duke Logo" class="w-12 h-12 mr-2">
+                    <h3 class="font-semibold">Duke University</h3>
+                </div>
+                <p>Medical Neuroscience (In Progress): Neuroanatomy, Sensory Systems, Motor Control</p>
             </div>
-            <div class="card">
-                <h3 class="font-semibold">Google: Data Analytics Professional Certificate (In Progress)</h3>
-                <p>Foundations, Data-Driven Decisions, Data Exploration, Data Analysis with R</p>
+            <div class="card p-6 mb-4">
+                <div class="flex items-center mb-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Google_Logo_2015.svg/1200px-Google_Logo_2015.svg.png" alt="Google Logo" class="w-12 h-12 mr-2">
+                    <h3 class="font-semibold">Google</h3>
+                </div>
+                <p>Data Analytics Professional Certificate (In Progress): Data Analysis, Visualization, R Programming</p>
             </div>
+            <button onclick="showSection('home')" class="mt-6 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Back to Home</button>
         </section>
 
         <!-- Experience -->
-        <section class="mb-12" data-aos="fade-up">
+        <section id="experience" class="section hidden-section" data-aos="fade-up">
             <h2 class="section-title">Experience</h2>
             <div class="timeline-item">
                 <h3 class="font-semibold text-xl">Research Assistant</h3>
-                <p class="text-sm text-gray-500">AJA University of Medical Sciences, Tehran, Iran | 09/2022 – 12/2023</p>
+                <p class="text-sm text-gray-500">AJA University, Tehran | 09/2022 – 12/2023</p>
             </div>
             <div class="timeline-item">
                 <h3 class="font-semibold text-xl">Psychotherapist</h3>
-                <p class="text-sm text-gray-500">Zanjan University of Medical Sciences, Zanjan, Iran | 10/2018 – 09/2021</p>
+                <p class="text-sm text-gray-500">Zanjan University | 10/2018 – 09/2021</p>
             </div>
-            <div class="timeline-item">
-                <h3 class="font-semibold text-xl">Psychotherapist</h3>
-                <p class="text-sm text-gray-500">"Pouya" Psychological Service Clinic, Zanjan, Iran | 09/2018 – 03/2021</p>
-            </div>
-            <div class="timeline-item">
-                <h3 class="font-semibold text-xl">Psychotherapist</h3>
-                <p class="text-sm text-gray-500">"Roshd" Psychological Service Clinic, Zanjan, Iran | 08/2018 – 12/2020</p>
-            </div>
-            <div class="timeline-item">
-                <h3 class="font-semibold text-xl">Psychological Assessor</h3>
-                <p class="text-sm text-gray-500">"Shafiye" Psychiatric Clinic, Zanjan, Iran | 09/2019 – 12/2019</p>
-            </div>
+            <button onclick="showSection('home')" class="mt-6 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Back to Home</button>
         </section>
 
-        <!-- Workshops & Webinars -->
-        <section class="mb-12" data-aos="fade-up">
+        <!-- Workshops -->
+        <section id="workshops" class="section hidden-section" data-aos="fade-up">
             <h2 class="section-title">Workshops & Webinars</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="card">
-                    <p>Innovation in EEG Research, ANT Neuro, 09/2022</p>
-                </div>
-                <div class="card">
-                    <p>Rumination-Focused CBT for Depression, 08/2019 – 09/2019</p>
-                </div>
-                <div class="card">
-                    <p>Behavioral Activation for Depressive and Anxiety Disorders, 05/2019 – 06/2019</p>
-                </div>
-                <div class="card">
-                    <p>Acceptance and Commitment Therapy, 12/2018 – 01/2019</p>
-                </div>
+                <div class="card p-6"><p>EEG Research Innovation, ANT Neuro, 09/2022</p></div>
+                <div class="card p-6"><p>Rumination-Focused CBT, 08/2019 – 09/2019</p></div>
+                <div class="card p-6"><p>Behavioral Activation, 05/2019 – 06/2019</p></div>
+                <div class="card p-6"><p>Acceptance and Commitment Therapy, 12/2018 – 01/2019</p></div>
             </div>
+            <button onclick="showSection('home')" class="mt-6 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Back to Home</button>
         </section>
 
-        <!-- Professional Memberships -->
-        <section class="mb-12" data-aos="fade-up">
+        <!-- Memberships -->
+        <section id="memberships" class="section hidden-section" data-aos="fade-up">
             <h2 class="section-title">Professional Memberships</h2>
             <ul class="list-disc pl-6">
-                <li>Iranian Psychological Association (IPA), 2018 – 2020</li>
-                <li>Scientific Association of the Psychology Department, Tabriz University, 2014 – 2016</li>
+                <li>Iranian Psychological Association, 2018 – 2020</li>
+                <li>Scientific Association, Tabriz University, 2014 – 2016</li>
             </ul>
+            <button onclick="showSection('home')" class="mt-6 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Back to Home</button>
         </section>
 
         <!-- Interests -->
-        <section class="mb-12" data-aos="fade-up">
+        <section id="interests" class="section hidden-section" data-aos="fade-up">
             <h2 class="section-title">Interests</h2>
-            <div class="card">
-                <p>Music, Reading Books, Poetry, Watching Movies, Spending Time with Family</p>
+            <div class="card p-6">
+                <p>Music, Reading Books, Poetry, Watching Movies, Family Time</p>
             </div>
+            <button onclick="showSection('home')" class="mt-6 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Back to Home</button>
         </section>
 
         <!-- Referees -->
-        <section class="mb-12" data-aos="fade-up">
+        <section id="referees" class="section hidden-section" data-aos="fade-up">
             <h2 class="section-title">Referees</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="card">
+                <div class="card p-6">
                     <h3 class="font-semibold">Danielle L. Taylor, Ph.D.</h3>
-                    <p>Postdoctoral Fellow, VA Charleston Health Care System</p>
-                    <p>Email: <a href="mailto:taydanie@musc.edu" class="text-blue-500 hover:underline">taydanie@musc.edu</a></p>
+                    <p>VA Charleston Health Care System</p>
+                    <p><a href="mailto:taydanie@musc.edu" class="text-blue-500 hover:underline">taydanie@musc.edu</a></p>
                 </div>
-                <div class="card">
+                <div class="card p-6">
                     <h3 class="font-semibold">Omid Saed, Ph.D.</h3>
-                    <p>Assistant Professor, Zanjan University of Medical Sciences</p>
-                    <p>Email: <a href="mailto:o.saed@zums.ac.ir" class="text-blue-500 hover:underline">o.saed@zums.ac.ir</a></p>
+                    <p>Zanjan University</p>
+                    <p><a href="mailto:o.saed@zums.ac.ir" class="text-blue-500 hover:underline">o.saed@zums.ac.ir</a></p>
                 </div>
-                <div class="card">
+                <div class="card p-6">
                     <h3 class="font-semibold">Ahmad Zolghadriha, M.D.</h3>
-                    <p>Assistant Professor, Zanjan University of Medical Sciences</p>
-                    <p>Email: <a href="mailto:dr.zolghadriha@zums.ac.ir" class="text-blue-500 hover:underline">dr.zolghadriha@zums.ac.ir</a></p>
+                    <p>Zanjan University</p>
+                    <p><a href="mailto:dr.zolghadriha@zums.ac.ir" class="text-blue-500 hover:underline">dr.zolghadriha@zums.ac.ir</a></p>
                 </div>
             </div>
+            <button onclick="showSection('home')" class="mt-6 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Back to Home</button>
         </section>
     </main>
 
@@ -320,15 +376,16 @@
             once: true,
         });
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden-section');
             });
-        });
+            document.getElementById(sectionId).classList.remove('hidden-section');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show home section by default
+        showSection('home');
     </script>
 </body>
 </html>
